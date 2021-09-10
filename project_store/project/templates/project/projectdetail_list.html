@@ -1,0 +1,15 @@
+<div>
+    {% for project in projectdetail_list %}
+        <p>
+            <img src="{{project.img.url}}">
+        </p>
+        <p>{{project.title}}</p>
+        <p>{{project.desc}}</p>
+        <p>{{project.web_url}}</p>
+        <p>{{project.yt_url}}</p>
+        <p>{{project.original_price}}</p>
+        <p>{{project.discounted_price}}</p>
+        <p>{{project.publish_date}}</p>
+        <hr>
+    {% endfor %}
+</div>

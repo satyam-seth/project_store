@@ -7,3 +7,6 @@ from django.views.generic.list import ListView
 
 class HomeView(TemplateView):
     template_name='project/home.html'
+
+class ProjectDetailListView(ListView):
+    model=ProjectDetail
