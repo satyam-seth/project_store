@@ -7,8 +7,8 @@
         </a>
 
         <ul class="right hide-on-med-and-down">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Video</a></li>
+            <li class="{{home_active}}"><a href="{% url 'home' %}">Home</a></li>
+            <li class="{{projectdetail_active}}"><a href="{% url 'projectdetail_list' %}">Projects</a></li>
             <li><a href="#">Service</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Contact</a></li>
@@ -18,8 +18,8 @@
 
 
 <ul class="sidenav" id="mobile-nav">
-    <li><a href="#">Home</a></li>
-    <li><a href="#">Video</a></li>
+    <li class="{{home_active}}"><a href="{% url 'home' %}">Home</a></li>
+    <li class="{{projectdetail_active}}"><a href="{% url 'projectdetail_list' %}">Projects</a></li>
     <li><a href="#">Service</a></li>
     <li><a href="#">About</a></li>
     <li><a href="#">Contact</a></li>

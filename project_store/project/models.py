@@ -7,6 +7,7 @@ class ProjectDetail(models.Model):
     desc=models.TextField(max_length=1000)
     web_url=models.URLField(blank=True)
     yt_url=models.URLField(blank=True)
+    yt_embed_url=models.URLField(blank=True)
     img=models.ImageField(upload_to='project')
     original_price=models.IntegerField()
     discounted_price=models.IntegerField()

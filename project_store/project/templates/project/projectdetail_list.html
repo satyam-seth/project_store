@@ -1,15 +1,89 @@
-<div>
-    {% for project in projectdetail_list %}
-        <p>
-            <img src="{{project.img.url}}">
-        </p>
-        <p>{{project.title}}</p>
-        <p>{{project.desc}}</p>
-        <p>{{project.web_url}}</p>
-        <p>{{project.yt_url}}</p>
-        <p>{{project.original_price}}</p>
-        <p>{{project.discounted_price}}</p>
-        <p>{{project.publish_date}}</p>
-        <hr>
-    {% endfor %}
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container" style="padding-top: 20px;">
+  {% for project in projectdetail_list %}
+  <div class="row">
+    <div class="col s12 m6">
+      <div class="card hoverable">
+        <div class="video-container">
+          <iframe width="853" height="480" src="{{project.yt_embed_url}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="col s12 m6">
+      <div class="card hoverable">
+        <div class="card-image">
+          <img class="materialboxed" data-caption="{{project.title}}" src="{{project.img.url}}">
+          <span class="activator btn-floating halfway-fab waves-effect waves-light purple"><i
+              class="material-icons">info</i></span>
+        </div>
+        <div class="card-content">
+          <span class="card-title grey-text text-darken-4">{{project.title}}</span>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{project.title}}<i
+              class="material-icons right">close</i></span>
+          <p class="flow-text">{{project.desc}}</p>
+        </div>
+        <div class="card-tabs">
+          <ul class="tabs tabs-fixed-width">
+            <li class="tab"><a href="#{{forloop.counter}}_demo">Run Project</a></li>
+            <li class="tab"><a class="active" href="#{{forloop.counter}}_buy">Buy</a></li>
+            <li class="tab"><a href="#{{forloop.counter}}_yt">YouTube Link</a></li>
+          </ul>
+        </div>
+        <div class="card-content grey lighten-4">
+          <div id="{{forloop.counter}}_demo" class="row center-align">
+            <a href="{{project.web_url}}" target="_blank" class="waves-effect waves-light btn"><i
+                class="material-icons left">visibility</i>Project Demo</a>
+          </div>
+          <div id="{{forloop.counter}}_buy" class="flow-text center-align">
+            M.R.P.- <span class="pink-text" style="text-decoration: line-through">&#x20B9; {{project.original_price}}
+              /-</span> Price- <span class="red-text">&#x20B9; {{project.discounted_price}} /-</span>
+              <a class="waves-effect waves-light btn modal-trigger" href="#modal1"><i class="material-icons right">local_mall</i>Buy</a>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <h4>Want to Buy {{project.title}}</h4>
+                <p>Please Call on 7235973436</p>
+              </div>
+              <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+              </div>
+            </div>
+          </div>
+          <div id="{{forloop.counter}}_yt" class="center-align">
+            <a href="{{project.yt_url}}" target="_blank" class="waves-effect waves-light btn"><i
+                class="material-icons left">visibility</i>YouTube Video</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="row center-align">
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+      <li class="waves-effect"><a href="?page={{ page_obj.previous_page_number }}"><i
+            class="material-icons">chevron_left</i></a></li>
+      {% else %}
+      <li class="disabled"><a><i class="material-icons">chevron_left</i></a></li>
+      {% endif %}
+      {% for i in page_obj.paginator.page_range %}
+      {% if i == page_obj.number %}
+      <li class="active purple"><a>{{i}}</a></li>
+      {% else %}
+      <li class="waves-effect"><a href="?page={{i}}">{{i}}</a></li>
+      {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+      <li class="waves-effect"><a href="?page={{ page_obj.paginator.num_pages }}"><i
+            class="material-icons">chevron_right</i></a></li>
+      {% else %}
+      <li class="disabled"><a><i class="material-icons">chevron_right</i></a></li>
+      {% endif %}
+    </ul>
+  </div>
 </div>
+{% endblock content %}

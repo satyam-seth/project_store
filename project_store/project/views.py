@@ -5,3 +5,9 @@ from django.views.generic.list import ListView
 
 class ProjectDetailListView(ListView):
     model=ProjectDetail
+    paginate_by=5
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["projectdetail_active"] = 'active'
+        return context
