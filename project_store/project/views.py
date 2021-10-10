@@ -5,7 +5,7 @@ from django.views.generic.list import ListView
 
 class ProjectDetailListView(ListView):
     model=ProjectDetail
-    paginate_by=5
+    paginate_by=2
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
